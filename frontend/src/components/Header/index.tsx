@@ -31,15 +31,11 @@ export const Header = () => {
               Freelancers
             </a>
           </li>
-          <li>
-            <a className="nav-link " href="#">
-              <Login />
-            </a>
+          <li className="mr-2">
+            <Login />
           </li>
           <li>
-            <a className="nav-link" href="#">
-              <Register />
-            </a>
+            <Register />
           </li>
         </ul>
       </nav>
