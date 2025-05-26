@@ -11,8 +11,10 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import type { AxiosError } from "axios";
 import { User } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 type LoginT = {
   email: string;
@@ -25,6 +27,25 @@ export const Login = () => {
     email: "",
     car_plate: "",
   });
+
+  const handleLogin = () => {
+    mutate(
+      {
+        email: loginState.email,
+        car_plate: loginState.car_plate,
+      },
+      {
+        onSuccess: (data) => {
+          console.log("Login successful:", data);
+        },
+        onError: (error) => {
+          const err = error as AxiosError<any>;
+          const message = err.response?.data?.message || err.message;
+          toast.error(`Login failed: ${message}`);
+        },
+      }
+    );
+  };
 
   return (
     <Dialog>
@@ -66,7 +87,7 @@ export const Login = () => {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={() => mutate(loginState)}>
+          <Button type="submit" onClick={handleLogin}>
             Login
           </Button>
         </DialogFooter>

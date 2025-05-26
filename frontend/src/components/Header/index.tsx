@@ -1,4 +1,3 @@
-import { Search } from "lucide-react";
 import "./index.scss";
 import { Login } from "@/auth/Login";
 import { Register } from "@/auth/Register";
