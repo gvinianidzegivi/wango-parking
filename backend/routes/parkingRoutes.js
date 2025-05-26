@@ -4,12 +4,10 @@ const {
   startParking,
   stopParking,
   getParkingHistory,
-} = require("../controllers/userController.js");
+} = require("../controllers/parkingController.js");
 
 router.post("/start", startParking);
-
 router.post("/stop", stopParking);
-
 router.get("/:email/sessions", getParkingHistory);
 
 module.exports = router;

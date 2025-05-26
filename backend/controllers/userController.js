@@ -15,10 +15,14 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   const { email, car_plate } = req.body;
   try {
-    const user = new User.findOne({ email, full_name, address, car_plate });
-    if (!user) return res.status(404).json({ message: "User not found" });
-    res.json(user);
+    const user = await User.findOne({ email, car_plate });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ message: "Login successful", user });
   } catch (err) {
-    res.status(500).json;
+    res.status(500).json({ message: "Error logging in", error: err.message });
   }
 };
